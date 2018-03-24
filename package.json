@@ -1,0 +1,29 @@
+{
+  "name": "nacl",
+  "version": "1.0.3",
+  "homepage": "https://github.com/hs300/nacl",
+  "description": "nacl middle",
+  "license": "BSD",
+  "main": "nacl.js",
+  "repository": {
+  },
+  "engines": {
+    "node": ">= 4.0.0"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+  ],
+  "author": {
+    "name": "YouJia",
+    "email": "pbft@foxmail.com"
+  },
+  "contributors": [
+    {
+      "name": "YouJia",
+      "email": "pbft@foxmail.com"
+    }
+  ]
+}
