@@ -2,28 +2,24 @@
  * Copyright(c) Graphene 2017 <pbft@foxmail.com>
  */
 
-const naclFactory = require('js-nacl')
-const nacl = {}
+const twnacl = require('tweetnacl')
 
-naclFactory.instantiate((naclInstance) => {
-  nacl.makeKeypair = (hash) => {
-    const keyPair = naclInstance.crypto_sign_keypair_from_seed(hash)
+const nacl = {
+  makeKeypair (hash) {
+    const keyPair = twnacl.sign.keyPair.fromSeed(hash)
     return {
-      publicKey: Buffer.from(keyPair.signPk),
-      privateKey: Buffer.from(keyPair.signSk),
+      publicKey: Buffer.from(keyPair.publicKey),
+      privateKey: Buffer.from(keyPair.secretKey),
     }
-  }
-
-  nacl.sign = (hash, keyPair) => {
-    const signature = naclInstance.crypto_sign_detached(hash, Buffer.from(keyPair.privateKey, 'hex'))
+  },
+  sign (hash, keyPair) {
+    const signature = twnacl.sign.detached(hash, Buffer.from(keyPair.privateKey, 'hex'))
     return Buffer.from(signature)
+  },
+  verify (hash, signature, publicKey) {
+    return twnacl.sign.detached.verify(hash, Buffer.from(signature, 'hex'), Buffer.from(publicKey, 'hex'))
   }
-
-  nacl.verify = (hash, signature, publicKey) => {
-    return naclInstance.crypto_sign_verify_detached(Buffer.from(signature, 'hex'),
-      hash, Buffer.from(publicKey, 'hex'))
-  }
-})
+}
 
 try {
   var Thread = require('hydra')

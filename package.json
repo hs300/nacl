@@ -1,14 +1,14 @@
 {
   "name": "nacl",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "homepage": "https://github.com/hs300/nacl",
-  "description": "nacl middle",
+  "description": "nacl",
   "license": "BSD",
   "main": "nacl.js",
   "repository": {
   },
   "engines": {
-    "node": ">= 4.0.0"
+    "node": ">= 8.0.0"
   },
   "dependencies": {
   },
